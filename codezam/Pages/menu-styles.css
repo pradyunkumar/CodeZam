@@ -33,6 +33,9 @@ a:visited {
 a:hover {
     text-decoration: underline;
 }
+.logo a:hover {
+    text-decoration: none;
+}
 .menu-container {
     color: #FFFFFF;
     background-color: #07244A;
