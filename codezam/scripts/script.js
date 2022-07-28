@@ -36,7 +36,7 @@ if (navigator.mediaDevices.getUserMedia) {
                 console.log("recorder started");
                 body.style.backgroundColor = "#307D92";
                 menu.style.backgroundColor = "#307D92";
-                button.style.backgroundColor = "#96D349"    
+                button.style.backgroundColor = "#8BE451"    
                 buttonText.textContent = "STOP";
                 startState = false;
                 visContainer.hidden = false;
@@ -45,8 +45,8 @@ if (navigator.mediaDevices.getUserMedia) {
                 mediaRecorder.stop();
                 console.log(mediaRecorder.state);
                 console.log("recorder stopped");
-                body.style.backgroundColor = "#AEE13F";
-                menu.style.backgroundColor = "#AEE13F";
+                body.style.backgroundColor = "#8BE451"; //AEE13F
+                menu.style.backgroundColor = "#8BE451";
                 button.style.backgroundColor = "#307D92";    
                 buttonText.textContent = "START";
                 startState = true;
@@ -107,7 +107,7 @@ function visualize(stream) {
         analyser.getByteTimeDomainData(dataArray);
 
         if (startState) {
-            canvasCtx.fillStyle = "#AEE13F";
+            canvasCtx.fillStyle = "#8BE451";
         } else {
             canvasCtx.fillStyle = "#307D92";
         }

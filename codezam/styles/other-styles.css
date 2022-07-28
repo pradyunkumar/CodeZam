@@ -5,10 +5,13 @@ body {
     background-color: #82A2F4;
 }
 .download-container {
-    background-color: #AEE13F;
+    background-color: #8BE451;
 }
 .download-container a {
     color: #FFFFFF;
+}
+.download-copy {
+    background-color: #8BE451;
 }
 .text {
     color: #FFFFFF;
