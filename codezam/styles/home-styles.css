@@ -1,11 +1,17 @@
-.button-container {
-    height: 600px;
-
+.start-container {
+    margin-top: 150px;
+    height: 300px;
     display: flex;
     justify-content: center;
     align-items: center;
+
+    position: relative;
 }
-.center-button {
+.vis-container {
+    position: absolute;
+    top: 125px;
+}
+.start-button {
     background-color: #135183;
     border: 1px solid #FFFFFF;
     border-radius: 50%;
@@ -15,18 +21,31 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
+    position: absolute;
 }
 .button-text {
     font-size: 25px;
     color: #FFFFFF;
 }
-.button-container a:hover {
+.stop-container {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+.stop-button {
+    background-color: #07244A;
+    font-size: 16px;
+    color: #FFFFFF;
+    font-weight: bold;
+}
+.start-container a:hover {
     text-decoration: none;
 }
-a:hover .center-button .button-text {
+.start-button:hover .button-text {
     font-size: 27px;
 }
-a:hover .center-button {
+.start-button:hover {
     height: 315px;
     width: 315px;
 }
