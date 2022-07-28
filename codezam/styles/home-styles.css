@@ -1,5 +1,10 @@
-.start-container {
-    margin-top: 150px;
+.middle-container {
+    height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.button-container {
     height: 300px;
     display: flex;
     justify-content: center;
@@ -7,13 +12,20 @@
 
     position: relative;
 }
+.static-line {
+    border-top: 2px solid #FFFFFF;
+    position: absolute;
+    top: 150px;
+    width: 100vw;
+}
 .vis-container {
     position: absolute;
-    top: 125px;
+    top: -72px;
+    z-index: -1;
 }
-.start-button {
-    background-color: #135183;
-    border: 1px solid #FFFFFF;
+.center-button {
+    background-color: #318BB1;
+    border: 3px solid #FFFFFF;
     border-radius: 50%;
     height: 300px;
     width: 300px;
@@ -25,27 +37,17 @@
     position: absolute;
 }
 .button-text {
-    font-size: 25px;
+    font-size: 35px;
     color: #FFFFFF;
+    justify-self: center;
 }
-.stop-container {
-    margin-top: 20px;
-    display: flex;
-    justify-content: center;
-}
-.stop-button {
-    background-color: #07244A;
-    font-size: 16px;
-    color: #FFFFFF;
-    font-weight: bold;
-}
-.start-container a:hover {
+.button-container a:hover {
     text-decoration: none;
 }
-.start-button:hover .button-text {
-    font-size: 27px;
+.center-button:hover .button-text {
+    font-size: 53px;
 }
-.start-button:hover {
+.center-button:hover {
     height: 315px;
     width: 315px;
 }

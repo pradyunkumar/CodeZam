@@ -1,13 +1,21 @@
 //set up variables
 
-const start = document.querySelector('.start-button');
-const stop = document.querySelector('.stop-button');
+const body = document.querySelector('body');
+const menu = document.querySelector('.menu-container');
+const button = document.querySelector('.center-button');
+const buttonText = document.querySelector('.button-text');
 const canvas = document.querySelector('.visualizer');
+const staticLine = document.querySelector('.static-line');
+const visContainer = document.querySelector('.vis-container');
 
 //create web audio api context
 
 let audioCtx;
 const canvasCtx = canvas.getContext("2d");
+
+//variable to track the state of center button
+let startState = true;
+visContainer.hidden = true;
 
 //main block for doing the audio recording
 
@@ -21,18 +29,30 @@ if (navigator.mediaDevices.getUserMedia) {
 
         visualize(stream)
         
-        start.onclick = function() {
-            mediaRecorder.start();
-            console.log(mediaRecorder.state);
-            console.log("recorder started");
-            start.style.backgroundColor = "#8c4343"
-        }
-
-        stop.onclick = function() {
-            mediaRecorder.stop();
-            console.log(mediaRecorder.state);
-            console.log("recorder stopped");
-            start.style.backgroundColor = "#135183";
+        button.onclick = function() {
+            if (startState) {
+                mediaRecorder.start();
+                console.log(mediaRecorder.state);
+                console.log("recorder started");
+                body.style.backgroundColor = "#307D92";
+                menu.style.backgroundColor = "#307D92";
+                button.style.backgroundColor = "#96D349"    
+                buttonText.textContent = "STOP";
+                startState = false;
+                visContainer.hidden = false;
+                staticLine.hidden = true;
+            } else {
+                mediaRecorder.stop();
+                console.log(mediaRecorder.state);
+                console.log("recorder stopped");
+                body.style.backgroundColor = "#AEE13F";
+                menu.style.backgroundColor = "#AEE13F";
+                button.style.backgroundColor = "#307D92";    
+                buttonText.textContent = "START";
+                startState = true;
+                visContainer.hidden = true;
+                staticLine.hidden = false;
+            }
         }
         
         mediaRecorder.onstop = function(e) {
@@ -86,10 +106,14 @@ function visualize(stream) {
 
         analyser.getByteTimeDomainData(dataArray);
 
-        canvasCtx.fillStyle = '#07244A';
+        if (startState) {
+            canvasCtx.fillStyle = "#AEE13F";
+        } else {
+            canvasCtx.fillStyle = "#307D92";
+        }
         canvasCtx.fillRect(0, 0, WIDTH, HEIGHT);
 
-        canvasCtx.lineWidth = 2;
+        canvasCtx.lineWidth = 3;
         canvasCtx.strokeStyle = '#FFFFFF';
 
         canvasCtx.beginPath();

@@ -5,44 +5,52 @@
         <title>Home</title>
         <link rel='stylesheet' href='styles/menu-styles.css'/>
         <link rel='stylesheet' href='styles/home-styles.css'/>
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Karla:wght@600&display=swap" rel="stylesheet">
+
     </head>
     <body>
         <header class='menu-container'>
             <div class='menu'>
                 <div class='logo'>
                     <a href='index.html'>
-                        <em>CodeZam!</em>
+                        CodeZam!
                     </a>
+                    <div class='by-text'>
+                        by
+                    </div>
+                    <div class='codeo-text'>
+                        CODEOLOGY
+                    </div>
                 </div>
                 <div class='toolbar'>
-                    <div class='about-us'><a href='about-us.html'>About Us</a></div>
-                    <div class='works'><a href='works.html'>How it Works</a></div>
-                    <div class='more'><a href='more.html'>More</a></div>
+                    <a href='about-us.html'>About Us</a>
+                    <a href='works.html'>How it Works</a>
+                    <a href='more.html'>More</a>
+                    <div class='download-container'>
+                        <a href='#'>Download</a>
+                    </div>
                 </div>    
             </div>
         </header>
-
-        <section class='middle'>
-            <div class='start-container'>   
+        <section class='middle-container'>
+            <div class='button-container'>   
+                <hr class='static-line'>
                 <div class='vis-container'>
-                    <canvas class='visualizer' height='60px'></canvas>
+                    <canvas class='visualizer' height='450px'></canvas>
                 </div>
-                <div class='start-button'>
+                <div class='center-button'>
                     <div class='button-text'>
                         <strong>START</strong>
                     </div>
                 </div> 
-            </div>
-            <div class='stop-container'>
-                <a href='#'>
-                    <div class='stop-button'>
-                        STOP
-                    </div>    
-                </a>
             </div>    
         </section>
         
+        
 
-        <script src='scripts/start-click.js'></script>
+        <script src='scripts/script.js'></script>
     </body>
 </html>

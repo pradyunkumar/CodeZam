@@ -1,3 +1,15 @@
+body {
+    background-color: #82A2F4;
+}
+.menu-container {
+    background-color: #82A2F4;
+}
+.download-container {
+    background-color: #AEE13F;
+}
+.download-container a {
+    color: #FFFFFF;
+}
 .text {
     color: #FFFFFF;
     display: flex;

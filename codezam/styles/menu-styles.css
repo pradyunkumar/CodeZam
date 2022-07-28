@@ -1,29 +1,12 @@
-@font-face {
-    font-family: 'Roboto';
-    src: url('../fonts/Roboto-Light-webfont.woff') format('woff');
-    font-style: normal;
-    font-weight: 300;
-}
-@font-face {
-    font-family: 'Roboto';
-    src: url('../fonts/Roboto-LightItalic-webfont.woff') format('woff');
-    font-style: italic;
-    font-weight: 300;
-}
-@font-face {
-    font-family: 'Roboto';
-    src: url('../fonts/Roboto-Bold-webfont.woff') format('woff');
-    font-style: normal;
-    font-weight: 700;
-}
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 body {
-    font-family: 'Roboto', sans-serif;
-    background-color: #07244A;
+    font-family: 'Bebas Neue', cursive;
+    background-color: #AEE13F;
 }
 a:link,
 a:visited {
@@ -31,14 +14,28 @@ a:visited {
     text-decoration: none;
 }
 a:hover {
-    text-decoration: underline;
+    text-decoration: none;
+}
+.logo {
+    display: flex;
+    align-items: baseline;
 }
 .logo a:hover {
     text-decoration: none;
 }
+.by-text {
+    font-family: 'Karla', sans-serif;
+    font-size: 12px;
+    margin: 0 6px;
+}
+.codeo-text {
+    font-family: 'Karla', sans-serif;
+    font-size: 14px;
+    letter-spacing: .3em;
+}
 .menu-container {
     color: #FFFFFF;
-    background-color: #07244A;
+    background-color: #AEE13F;
     padding: 20px 0;
     display: flex;
     justify-content: center;
@@ -49,18 +46,43 @@ a:hover {
     justify-content: space-between;
     padding: 0 20px;
     align-items: center;
-
-    font-size: 24px;
+    font-size: 55px;
 }
 .toolbar {
     width: 40%;
     display: flex;
     justify-content: space-between;
-
-    font-size: 16px;
+    align-items: center;
+    font-size: 18px;
+}
+.download-container {
+    width: 130px;
+    height: 40px;
+    border-radius: 13px;
+    background-color: #FFFFFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.download-container a {
+    color: #82A2F4;
+    font-size: 21px;
 }
 @media only screen and (max-width: 800px) {
     .toolbar {
+        width: 38%;
+    }
+    .download-container {
+        display: none;
+    }
+}
+@media only screen and (min-width: 801px) and (max-width: 900px) {
+    .toolbar {
         width: 305px;
+    }
+}
+@media only screen and (min-width: 801px) and (max-width: 1300px) {
+    .download-container {
+        display: none;
     }
 }
