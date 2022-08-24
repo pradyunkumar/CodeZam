@@ -4,6 +4,7 @@ services:
     ports:
       - 5432:5432
       - 8000:8000
+      # - 5000:5000
     build:
       context: ./docker/postgres
     volumes:

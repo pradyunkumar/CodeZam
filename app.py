@@ -1,5 +1,8 @@
 import json
-from flask import Flask, render_template, request, redirect, flash
+import soundfile
+import io
+import os
+from flask import Flask, render_template, request, redirect, flash, jsonify
 from werkzeug.utils import secure_filename
 from example_script import predict
 
@@ -39,28 +42,37 @@ def prediction(file):
     print(predict(secure_filename(file.filename)))
     return redirect('index.html')
 
-# def predict(file):
-#     with open("/Users/prady/Documents/Programming/codezam_connect/dejavu/dejavu.cnf.SAMPLE") as f:
-#         config = json.load(f)
-#     djv = Dejavu(config)
+@app.route("/receive", methods=['POST'])
+def form():
+    file = request.files['file']
+    file.save(secure_filename(file.filename))
+    print(file)
 
-#     # Fingerprint all the mp3's in the directory we give it
-#     djv.fingerprint_directory("test", [".wav"])
+    # with open(os.path.abspath(f'{file.filename}'), 'wb') as f:
+    #     f.write(file.getvalue())
 
-#     # Recognize audio from a file
-#     results = djv.recognize(FileRecognizer, file.name)
-#     print(f"From file we recognized: {results}\n")
+    ans = prediction(file)
 
-#     # Or recognize audio from your microphone for `secs` seconds
-#     secs = 5
-#     results = djv.recognize(MicrophoneRecognizer, seconds=secs)
-#     if results is None:
-#         return "Nothing recognized -- did you play the song out loud so your mic could hear it? :)"
-#     else:
-#         return f"From mic with {secs} seconds we recognized: {results}\n"
+    os.remove(secure_filename(file.filename))
+    # filepath = os.path.join(app.config["UPLOAD_FOLDER"], filename)
+    # f.save(filepath)
 
-		
-# import os
-# if __name__ == "__main__":
-#     port = int(os.environ.get('PORT', 5000))
-#     app.run(debug=True, host='0.0.0.0', port=port)
+    # Jump back to the beginning of the file.
+    # f.seek(0)
+    
+    # # Read the audio data again.
+    # data, samplerate = soundfile.read(filename)
+    # with io.BytesIO() as fio:
+    #     soundfile.write(
+    #         fio, 
+    #         data, 
+    #         samplerate=samplerate, 
+    #         subtype='PCM_16', 
+    #         format='wav'
+    #     )
+    #     data = fio.getvalue()
+
+    response = jsonify("File received and saved!")
+    response.headers.add('Access-Control-Allow-Origin', '*')
+
+    return ans

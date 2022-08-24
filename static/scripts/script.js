@@ -58,10 +58,25 @@ if (navigator.mediaDevices.getUserMedia) {
         mediaRecorder.onstop = function(e) {
             console.log("data available after MediaRecorder.stop() called.");
             
-            const blob = new Blob(chunks, { 'type' : 'audio/ogg; codecs=opus' });
+            const blob = new Blob(chunks, { 'type' : 'audio/wav' });
             chunks = [];
-            const audioURL = window.URL.createObjectURL(blob);
+            const audioUrl = URL.createObjectURL(blob);
+            const audio = new Audio(audioUrl);
+            audio.play();
             console.log("recorder stopped");
+
+            var data = new FormData()
+            data.append('file', blob , 'file')
+
+            fetch('http://127.0.0.1:8080/receive', {
+                method: 'POST',
+                body: data
+
+            }).then(response => response.json()
+            ).then(json => {
+                console.log(json)
+            });
+            
 
         }
 

@@ -4,7 +4,7 @@ RUN apt-get install \
     gcc nano \
     ffmpeg libasound-dev portaudio19-dev libportaudio2 libportaudiocpp0 \
     postgresql postgresql-contrib -y
-RUN pip install scipy matplotlib pydub pyaudio psycopg2 numpy flask
+RUN pip install scipy matplotlib pydub pyaudio psycopg2 numpy flask 
 WORKDIR /app
 COPY . /app
 
