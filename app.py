@@ -1,6 +1,3 @@
-import json
-import soundfile
-import io
 import os
 from flask import Flask, render_template, request, redirect, flash, jsonify
 from werkzeug.utils import secure_filename
@@ -39,8 +36,8 @@ def upload_file():
       return prediction(f)
 
 def prediction(file):
-    print(predict(secure_filename(file.filename)))
-    return redirect('index.html')
+    print(format_output(predict(secure_filename(file.filename))))
+    return redirect('/')
 
 @app.route("/receive", methods=['POST'])
 def form():
@@ -74,5 +71,13 @@ def form():
 
     response = jsonify("File received and saved!")
     response.headers.add('Access-Control-Allow-Origin', '*')
-
     return ans
+
+def format_output(res):
+    results = res['results']
+    results.sort(key=lambda x: x['hashes_matched_in_input'], reverse=True)
+    return {i: res['results'][i]['song_name'] for i in range(len(res['results']))}
+    # return res
+
+if __name__ == "__main__":
+    app.run(debug=False, host="0.0.0.0")
