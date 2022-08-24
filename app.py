@@ -8,10 +8,14 @@ from example_script import predict
 # Create App
 app = Flask(__name__)
 
+# Set secret key
+app.secret_key = 'secret_key'
+
 # Select Route
 @app.route('/', methods=['POST', 'GET'])
 @app.route('/index.html')
 def index():
+    flash('hey')
     return render_template("index.html")
 
 @app.route('/about-us')
@@ -29,20 +33,22 @@ def more():
 def works():
     return render_template("works.html")
 
-@app.route('/uploader', methods = ['GET', 'POST'])
-def upload_file():
-   if request.method == 'POST':
-      f = request.files['file']
-      f.save(secure_filename(f.filename))
-    #   return predict(f)
-      return prediction(f)
+#@app.route('/uploader', methods = ['GET', 'POST'])
+#def upload_file():
+#   if request.method == 'POST':
+#      f = request.files['file']
+#      f.save(secure_filename(f.filename))
+#    #   return predict(f)
+#      return prediction(f)
 
 def prediction(file):
-    print(predict(secure_filename(file.filename)))
-    return redirect('index.html')
+    flash('hey')
+    #print(predict(secure_filename(file.filename)))
+    return render_template('index.html')
 
 @app.route("/receive", methods=['POST'])
 def form():
+    flash('hey')
     file = request.files['file']
     file.save(secure_filename(file.filename))
     print(file)
@@ -75,3 +81,6 @@ def form():
     response.headers.add('Access-Control-Allow-Origin', '*')
 
     return ans
+
+if __name__ == "__main__":
+    app.run(debug=False, host="0.0.0.0")

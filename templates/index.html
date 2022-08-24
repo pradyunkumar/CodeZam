@@ -3,6 +3,7 @@
     <head>
         <meta charset='UTF-8'/>
         <title>Home</title>
+        <link rel="shortcut icon" href="#">
         <link rel="stylesheet" href="{{
             url_for('static', filename='css/menu-styles.css')}}">
         <link rel="stylesheet" href="{{
@@ -14,6 +15,11 @@
 
     </head>
     <body>
+        
+        {% for message in get_flashed_messages() %}
+            <div class="flash-msg"> {{ message }} </div>
+        {% endfor %}
+
         <header class='menu-container'>
             <div class='menu'>
                 <div class='logoname'>
