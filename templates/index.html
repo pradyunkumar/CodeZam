@@ -15,11 +15,6 @@
 
     </head>
     <body>
-        
-        {% for message in get_flashed_messages() %}
-            <div class="flash-msg"> {{ message }} </div>
-        {% endfor %}
-
         <header class='menu-container'>
             <div class='menu'>
                 <div class='logoname'>
@@ -28,7 +23,7 @@
                             <img src="{{url_for('static', filename='images/soundwave.png')}}" width=260px height=86px/>
                         </div>
                         <a href='index.html'>
-                            CodeZam!
+                            Jay-Zam!
                         </a>
                         <div class='by-text'>
                             by
@@ -52,7 +47,7 @@
                 </div>    
             </div>
         </header>
-        <section class='middle-container'>
+        <section class='middle-container' id="middleid">
             <div class='button-container'>   
                 <hr class='static-line'>
                 <div class='vis-container'>

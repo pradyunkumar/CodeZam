@@ -37,6 +37,7 @@ def predict(file):
     #     return "Nothing recognized -- did you play the song out loud so your mic could hear it? :)"
     # else:
     #     return f"From mic with {secs} seconds we recognized: {results}\n"
+    return results
 
 if __name__ == '__main__':
 

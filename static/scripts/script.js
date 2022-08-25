@@ -47,7 +47,7 @@ if (navigator.mediaDevices.getUserMedia) {
                 console.log("recorder stopped");
                 body.style.backgroundColor = "#8BE451"; //AEE13F
                 menu.style.backgroundColor = "#8BE451";
-                button.style.backgroundColor = "#307D92";    
+                button.style.backgroundColor = "#318BB1";    
                 buttonText.textContent = "START";
                 startState = true;
                 visContainer.hidden = true;
@@ -65,7 +65,7 @@ if (navigator.mediaDevices.getUserMedia) {
             audio.play();
             console.log("recorder stopped");
 
-            var data = new FormData()
+            let data = new FormData()
             data.append('file', blob , 'file')
 
             fetch('http://127.0.0.1:8080/receive', {
@@ -73,8 +73,22 @@ if (navigator.mediaDevices.getUserMedia) {
                 body: data
 
             }).then(response => response.json()
-            ).then(json => {
-                console.log(json)
+            ).then(response => {
+                let para = document.createElement("p");
+                let node = document.createTextNode(response);
+                para.appendChild(node);
+                para.setAttribute(
+                    'style',
+                    'font-size: 60px;color: #FFFFFF;justify-self:center',
+                );
+
+                let middle = document.getElementById('middleid');
+                while (middle.firstChild) {
+                    middle.removeChild(middle.firstChild);
+                }
+                middle.appendChild(para);
+                
+                console.log(response)
             });
             
 

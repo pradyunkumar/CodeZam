@@ -1,21 +1,16 @@
 import json
-import io
 import os
-from flask import Flask, render_template, request, redirect, flash, jsonify
+from flask import Flask, render_template, request, jsonify
 from werkzeug.utils import secure_filename
 from example_script import predict
 
 # Create App
 app = Flask(__name__)
 
-# Set secret key
-app.secret_key = 'secret_key'
-
 # Select Route
 @app.route('/', methods=['POST', 'GET'])
 @app.route('/index.html')
 def index():
-    flash('hey')
     return render_template("index.html")
 
 @app.route('/about-us')
@@ -41,14 +36,14 @@ def works():
 #    #   return predict(f)
 #      return prediction(f)
 
-def prediction(file):
-    flash('hey')
-    #print(predict(secure_filename(file.filename)))
-    return render_template('index.html')
+#def prediction(file):
+#    result = str(format_output(predict(secure_filename(file.filename))))
+#    flash(result)
+#    print(result)
+#    return render_template("/result.html")
 
 @app.route("/receive", methods=['POST'])
 def form():
-    flash('hey')
     file = request.files['file']
     file.save(secure_filename(file.filename))
     print(file)
@@ -56,9 +51,9 @@ def form():
     # with open(os.path.abspath(f'{file.filename}'), 'wb') as f:
     #     f.write(file.getvalue())
 
-    ans = prediction(file)
-
+    result = str(format_output(predict(secure_filename(file.filename))))
     os.remove(secure_filename(file.filename))
+
     # filepath = os.path.join(app.config["UPLOAD_FOLDER"], filename)
     # f.save(filepath)
 
@@ -77,10 +72,17 @@ def form():
     #     )
     #     data = fio.getvalue()
 
-    response = jsonify("File received and saved!")
-    response.headers.add('Access-Control-Allow-Origin', '*')
+    #response = jsonify("File received and saved!")
+    #response.headers.add('Access-Control-Allow-Origin', '*')
 
-    return ans
+    result = jsonify(result)
+    return result
+    
+def format_output(res):
+    results = res['results']
+    results.sort(key=lambda x: x['hashes_matched_in_input'], reverse=True)
+    return str({i: res['results'][i]['song_name'] for i in range(len(res['results']))})
+    # return res
 
 if __name__ == "__main__":
     app.run(debug=False, host="0.0.0.0")
